@@ -12,3 +12,12 @@ where parent_id IS NOT NULL and texts_id IS NULL;
 create index idx_id ON texts(id);
 create index idx_texts_id ON category(texts_id);
 
+Составить запрос, желательно без подзапросов,
+который выбирает все КАТЕГОРИИ у которых есть ПОТОМКИ,
+и не больше трех связанных текстов
+
+select *, count(texts_id) as text_count
+from category
+where texts_id IS NOT NULL
+group by id
+having count(texts_id) < 4
